@@ -6,8 +6,8 @@ import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/observable/forkJoin';
 import * as _ from 'lodash';
 
-// import {URLSearchParams} from '@angular/http';
-
+import {URLSearchParams} from '@angular/http';
+  
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
