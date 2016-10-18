@@ -55,10 +55,10 @@
               </div>
             </template>
           </md-tab>
-          <md-tab>
+          <md-tab *ngIf="(selectedGame.myExpansions && selectedGame.myExpansions.length > 0) || (selectedGame.details.expansions && selectedGame.details.expansions.length > 0)">
             <template md-tab-label>Expansions</template>
             <template md-tab-content>
-              <div class="section">
+              <div class="section" *ngIf="selectedGame.myExpansions && selectedGame.myExpansions.length > 0">
                 <div class="title">My expansions</div>
                 <div class="expansions">
                   <ul class="article-list-title-photo">
@@ -68,7 +68,7 @@
                   </ul>
                 </div>
               </div>
-              <md-list class="section">
+              <md-list class="section"  *ngIf="selectedGame.details.expansions && selectedGame.details.expansions.length > 0">
                 <div class="title">All expansions</div>
                 <md-list-item *ngFor="let expansion of selectedGame.details.expansions">
                   <a href="https://boardgamegeek.com/boardgame/{{expansion.gameId}}" title="{{expansion.name}}" target="_blank">{{expansion.name}}</a>
