@@ -1,0 +1,70 @@
+.tags-basic{
+    text-align: right;
+}
+
+.tags-basic ul{
+    list-style: none;
+    padding: 0;
+    margin:0;
+}
+
+.tags-basic li{
+    margin: 10px;
+    display: inline-block;
+}
+
+.tags-basic li a{
+    position: relative;
+    display: block;
+    padding: 0 15px;
+
+    color: #B08F28;
+    font: bold 13px sans-serif;
+    line-height: 28px;
+    text-decoration: none;
+
+    border: 1px solid #dfb45e;
+    border-radius: 0 2px 2px 0;
+    background: linear-gradient(0deg, #f8df92 0%, #fbe5a1 100%);
+    box-shadow: 1px 2px 1px 0 rgba(0, 0, 0, 0.1), 0 1px 0 0 #fef5da inset;
+}
+
+/* Pointy tip */
+
+.tags-basic li a:before{
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: -9px;
+    top: -1px;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-right: 8px solid #dfb45e;
+}
+
+.tags-basic li a:after{
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: -8px;
+    top: 0;
+    border-top: 14px solid transparent;
+    border-bottom: 14px solid transparent;
+    border-right: 8px solid #fbe192;
+}
+
+/* The white dot */
+
+.tags-basic li a span{
+    content: '';
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    left: 0;
+    top: 11px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    border: 1px solid #dfb45e;
+}

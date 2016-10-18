@@ -1,3 +1,109 @@
-<h1>
-  {{title}}
-</h1>
+<div id="game-details" [ngClass]="{'visible': selectedGame}">
+  <div class="details-content">
+    <header class="header">
+      <div>
+        <h2 *ngIf="selectedGame">{{selectedGame.name}}</h2>
+        <div class="close" (click)="selectedGame = unfefined">
+          <span>&times;</span>
+        </div>
+      </div>
+    </header>
+    <div class="content">
+      <div class="image" [ngStyle]="{'background-image':'url(' + selectedGame.image + ')'}" n *ngIf="selectedGame"></div>
+      <div class="details" *ngIf="selectedGame && selectedGame.details">
+        <md-tab-group>
+          <md-tab>
+            <template md-tab-label>Overview</template>
+            <template md-tab-content>       
+              <div class="section">
+                <div class="title">Description</div>
+                <p [innerHTML]="selectedGame.details.description"></p>
+              </div>
+              <div class="section">
+                <div class="title">Details</div>
+                <p>{{selectedGame.details.minPlayers}}-{{selectedGame.details.maxPlayers}} players</p>
+                <p>{{selectedGame.details.playingTime}} minutes</p>
+              </div>
+              <div class="section">
+                <div class="title">Images of the game</div>
+                <div *ngIf="selectedGame.images" class="images">
+                  <img *ngFor="let image of selectedGame.images" [src]="image.imageurl">
+                </div>
+              </div>
+              <div class="section">
+                <div class="title">Videos of the game</div>
+                <div *ngIf="selectedGame.videos" class="videos">
+                  <!--<div *ngFor="let video of selectedGame.videos">
+                  <iframe width="30%" height="auto" src="https://www.youtube.com/embed/{{video.extvideoid}}" frameborder="0" allowfullscreen></iframe>
+                  </div>-->
+                  <div class="video" *ngFor="let video of selectedGame.videos">
+                    <youtube-player [videoId]="video.extvideoid"></youtube-player>
+                  </div>
+                </div>
+              </div>
+              <div class="section">
+                <div class="title">Mechanics</div>
+                <div class="tags-basic">
+                  <ul>
+                    <li *ngFor="let tag of selectedGame.details.mechanics">
+                      <a href="#">
+                          <span></span> {{tag}}
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </template>
+          </md-tab>
+          <md-tab>
+            <template md-tab-label>Expansions</template>
+            <template md-tab-content>
+              <div class="section">
+                <div class="title">My expansions</div>
+                <div class="expansions">
+                  <ul class="article-list-title-photo">
+                    <li *ngFor="let expansion of selectedGame.myExpansions" [ngStyle]="{'background-image':'url(' + expansion.image + ')'}">
+                      <h2><span>{{expansion.name}}</span></h2>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <md-list class="section">
+                <div class="title">All expansions</div>
+                <md-list-item *ngFor="let expansion of selectedGame.details.expansions">
+                  <a href="https://boardgamegeek.com/boardgame/{{expansion.gameId}}" title="{{expansion.name}}" target="_blank">{{expansion.name}}</a>
+                </md-list-item>
+              </md-list>
+            </template>
+          </md-tab>
+        </md-tab-group>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="overlay" [hidden]="!selectedGame" (click)="selectedGame = unfefined"></div>
+
+<ul class="article-list-lots-of-details">
+  <li *ngFor="let game of games" (click)="selectGame(game)">
+      <div class="header">
+        <div class="image" [ngStyle]="{'background-image':'url(' + game.image + ')'}">
+        </div>
+      </div>
+      <div class="details">
+        <h3>{{game.name}}</h3>
+        <div class="infos">
+          <div><p><i class="fa fa-users" aria-hidden="true"></i> <span>{{game.minPlayers}}<span *ngIf="game.minPlayers !== game.maxPlayers">-{{game.maxPlayers}}</span></span> players</p></div>
+          <div><p><i class="fa fa-clock-o" aria-hidden="true"></i> {{game.playingTime}} min</p></div>
+        </div>
+
+        <!--<span>by <a href="#">Author Name</a> &#xB7; 22nd Aug 2015</span>-->
+      </div>
+      <!--<div>17</div>-->
+  </li>
+</ul>
+
+<!--<ul class="article-list-title-photo" id="gameslist">
+  <li *ngFor="let game of games" [ngStyle]="{'background-image':'url(' + game.image + ')'}" (click)="selectGame(game)">
+    <h2><span>{{game.name}}</span></h2>
+  </li>
+</ul>-->
