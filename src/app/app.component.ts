@@ -7,7 +7,7 @@ import 'rxjs/add/observable/forkJoin';
 import * as _ from 'lodash';
 
 import {URLSearchParams} from '@angular/http';
-  
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -22,8 +22,10 @@ export class AppComponent implements OnInit{
   username : String;
 
   constructor(private gameService: GamesService) {
-    let params = new URLSearchParams(location.search);
-    this.username = params.get('user') || 'tagazok';
+    var url = new URLSearchParams(location.search);
+    this.username = url.get('?user');
+    // var url = new URL(window.location.toString());
+    // this.username = url.searchParams.get('?user') || 'tagazok';
   }
 
   ngOnInit() {
