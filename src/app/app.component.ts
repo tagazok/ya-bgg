@@ -23,7 +23,7 @@ export class AppComponent implements OnInit{
 
   constructor(private gameService: GamesService) {
     var url = new URLSearchParams(location.search);
-    this.username = url.get('?user');
+    this.username = url.get('?user') || 'tagazok';
     
     // var url = new URL(window.location.toString());
     // this.username = url.searchParams.get('?user') || 'tagazok';
