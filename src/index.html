@@ -1,6 +1,127 @@
 <!doctype html>
 <html>
 <head>
+  <style>
+
+    .loader {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #262626;
+      background: radial-gradient(#262626, #131313);
+      perspective: 400px;
+      width: 100%;
+      height: 100%;
+    }
+    .cube, .face {
+      width: 50px;
+      height: 50px;
+    }
+
+    .cube {
+      position: relative;
+      -webkit-transform-style: preserve-3d;
+              transform-style: preserve-3d;
+      -webkit-transform: rotateX(45deg) rotate(45deg);
+              transform: rotateX(45deg) rotate(45deg);
+      -webkit-animation: magic 2s ease-in-out infinite both;
+              animation: magic 2s ease-in-out infinite both;
+    }
+
+    @-webkit-keyframes magic {
+      16% {
+        -webkit-transform: rotateX(45deg) rotate(45deg) scaleX(3);
+                transform: rotateX(45deg) rotate(45deg) scaleX(3);
+      }
+      33% {
+        -webkit-transform: rotateX(45deg) rotate(45deg) scaleX(3) scaleY(3);
+                transform: rotateX(45deg) rotate(45deg) scaleX(3) scaleY(3);
+      }
+      50% {
+        -webkit-transform: rotateX(45deg) rotate(45deg) scaleX(1) scaleY(3);
+                transform: rotateX(45deg) rotate(45deg) scaleX(1) scaleY(3);
+      }
+      66% {
+        -webkit-transform: rotateX(45deg) rotate(45deg) scaleX(3) scaleY(3) scaleZ(3);
+                transform: rotateX(45deg) rotate(45deg) scaleX(3) scaleY(3) scaleZ(3);
+      }
+      83% {
+        -webkit-transform: rotateX(45deg) rotate(45deg) scaleY(3);
+                transform: rotateX(45deg) rotate(45deg) scaleY(3);
+      }
+    }
+
+    @keyframes magic {
+      16% {
+        -webkit-transform: rotateX(45deg) rotate(45deg) scaleX(3);
+                transform: rotateX(45deg) rotate(45deg) scaleX(3);
+      }
+      33% {
+        -webkit-transform: rotateX(45deg) rotate(45deg) scaleX(3) scaleY(3);
+                transform: rotateX(45deg) rotate(45deg) scaleX(3) scaleY(3);
+      }
+      50% {
+        -webkit-transform: rotateX(45deg) rotate(45deg) scaleX(1) scaleY(3);
+                transform: rotateX(45deg) rotate(45deg) scaleX(1) scaleY(3);
+      }
+      66% {
+        -webkit-transform: rotateX(45deg) rotate(45deg) scaleX(3) scaleY(3) scaleZ(3);
+                transform: rotateX(45deg) rotate(45deg) scaleX(3) scaleY(3) scaleZ(3);
+      }
+      83% {
+        -webkit-transform: rotateX(45deg) rotate(45deg) scaleY(3);
+                transform: rotateX(45deg) rotate(45deg) scaleY(3);
+      }
+    }
+    .face {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      -webkit-transform-style: preserve-3d;
+              transform-style: preserve-3d;
+    }
+    .face:before, .face:after {
+      display: block;
+      content: "";
+      background-color: inherit;
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      -webkit-transform-style: preserve-3d;
+              transform-style: preserve-3d;
+    }
+
+    .z {
+      background: #24949B;
+      -webkit-transform: translateZ(25px);
+              transform: translateZ(25px);
+    }
+
+    .x {
+      background-color: #D63935;
+    }
+    .x:after {
+      -webkit-transform: rotateX(90deg) translateZ(25px);
+              transform: rotateX(90deg) translateZ(25px);
+    }
+    .x:before {
+      -webkit-transform: rotateX(90deg) translateZ(-25px);
+              transform: rotateX(90deg) translateZ(-25px);
+    }
+
+    .y {
+      background-color: #E79C10;
+    }
+    .y:after {
+      -webkit-transform: rotateY(90deg) translateZ(25px);
+              transform: rotateY(90deg) translateZ(25px);
+    }
+    .y:before {
+      -webkit-transform: rotateY(90deg) translateZ(-25px);
+              transform: rotateY(90deg) translateZ(-25px);
+    }
+
+  </style>
   <meta charset="utf-8">
   <title>Ya-BGG</title>
   <base href="/">
@@ -9,6 +130,14 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
-  <app-root>Loading...</app-root>
+  <app-root>
+    <div class="loader">
+      <div class="cube">
+        <div class="face x"></div>
+        <div class="face y"></div>	
+        <div class="face z"></div>	
+      </div>
+    </div>
+  </app-root>
 </body>
 </html>
